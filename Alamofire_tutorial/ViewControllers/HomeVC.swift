@@ -10,7 +10,7 @@ import Alamofire
 import SnapKit
 import Toast_Swift
 
-class ViewController: UIViewController {
+class HomeVC: UIViewController {
     let url = API.BASIC_URL + "search/photos"
     
     
@@ -18,10 +18,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setUpUI()
+        
+        
     }
     
     func setUpUI() {
         let mainContainerView = MainContainer()
+        mainContainerView.delegate = self
         self.view.addSubview(mainContainerView)
         mainContainerView.snp.makeConstraints{ make in
             make.top.equalTo(self.view.snp.top).offset(200)
@@ -31,5 +34,12 @@ class ViewController: UIViewController {
     }
     
     
+}
+
+// MARK: - identifier Delegate method
+extension HomeVC: identifierDelegate {
+    func searchButton(identifier: String) {
+        self.performSegue(withIdentifier: identifier, sender: self)
+    }
 }
 

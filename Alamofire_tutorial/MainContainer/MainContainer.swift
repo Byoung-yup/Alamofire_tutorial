@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import Toast_Swift
+
+protocol identifierDelegate {
+    func searchButton(identifier: String)
+}
 
 class MainContainer: UIView {
+    
+    var delegate: identifierDelegate!
     
     var mainPhotoView: UIImageView = {
         let imgV = UIImageView()
@@ -36,10 +43,12 @@ class MainContainer: UIView {
     var searchBtn: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("검색하기", for: .normal)
+        btn.addTarget(self, action: #selector(onSearchButtonClicked(_:)), for: .touchUpInside)
         btn.backgroundColor = .red
         btn.tintColor  = .white
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         btn.layer.cornerRadius = 10
+        btn.isHidden = true
         return btn
     }()
     
@@ -56,6 +65,7 @@ class MainContainer: UIView {
         super.init(frame: frame)
         self.loadXib()
         self.setUpUI()
+        self.setDelegate()
     }
     
     required init?(coder: NSCoder) {
@@ -68,6 +78,11 @@ class MainContainer: UIView {
             nib.frame = self.bounds
             self.addSubview(nib)
         }
+    }
+    
+    // MARK: - set Delegate
+    func setDelegate() {
+        self.searchBar.delegate = self
     }
     
     // MARK: - setUpUI method
@@ -90,7 +105,7 @@ class MainContainer: UIView {
         self.searchBar.snp.makeConstraints{ make in
             make.top.equalTo(sgControl.snp.bottom).offset(30)
             make.centerX.equalTo(sgControl.snp.centerX)
-            make.width.equalTo(250)
+            make.width.equalTo(300)
         }
         
         self.addSubview(self.searchBtn)
@@ -122,5 +137,51 @@ class MainContainer: UIView {
         
         self.searchBar.placeholder = btnTitle + " 입력"
         self.searchBar.becomeFirstResponder() // 포커싱 설정
+    }
+    
+    @objc func onSearchButtonClicked( _ sender: UIButton) {
+        self.pushVC()
+    }
+    
+    // MARK: - fileprivate methods
+    fileprivate func pushVC() {
+        var segueID: String = ""
+        
+        switch sgControl.selectedSegmentIndex {
+        case 0:
+            segueID = "goToPhotoCollectionVC"
+        case 1:
+            segueID = "goToUserListVC"
+        default :
+            break
+        }
+        self.delegate.searchButton(identifier: segueID)
+    }
+}
+
+
+// MARK: - UISearchBar Delegate methods
+extension MainContainer: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchText.isEmpty) {
+            self.searchBtn.isHidden = true
+        } else {
+            self.searchBtn.isHidden = false
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let inputText = searchBar.text?.appending(text).count ?? 0
+        
+        if (inputText >= 12) {
+            self.makeToast("📢 12자 까지만 입력가능합니다.", duration: 1.0, position: .center)
+        }
+        
+        return inputText <= 12 ? true : false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let userInputText = self.searchBar.text else { return }
+         
     }
 }
