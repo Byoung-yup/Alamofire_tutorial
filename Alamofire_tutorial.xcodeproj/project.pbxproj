@@ -16,6 +16,7 @@
 		346B68AF27A3DD1C00260401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346B68AE27A3DD1C00260401 /* Assets.xcassets */; };
 		346B68B227A3DD1C00260401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 346B68B027A3DD1C00260401 /* LaunchScreen.storyboard */; };
 		346B68BB27A3E36100260401 /* Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B68BA27A3E36100260401 /* Constrants.swift */; };
+		34987EC127B118FF0057E9B9 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34987EC027B118FF0057E9B9 /* BaseVC.swift */; };
 		34F66BC227ABAF17009CDA4E /* MainContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F66BC127ABAF17009CDA4E /* MainContainer.xib */; };
 		34F66BC427ABAF65009CDA4E /* MainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F66BC327ABAF65009CDA4E /* MainContainer.swift */; };
 		7F8F07CB8454B3C42BD5906C /* Pods_Alamofire_tutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863F953D3A06AE7D9AF12036 /* Pods_Alamofire_tutorial.framework */; };
@@ -33,6 +34,7 @@
 		346B68B127A3DD1C00260401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		346B68B327A3DD1C00260401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		346B68BA27A3E36100260401 /* Constrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrants.swift; sourceTree = "<group>"; };
+		34987EC027B118FF0057E9B9 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		34F66BC127ABAF17009CDA4E /* MainContainer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainContainer.xib; sourceTree = "<group>"; };
 		34F66BC327ABAF65009CDA4E /* MainContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainer.swift; sourceTree = "<group>"; };
 		35C11FFF2BFC05FFCB44794E /* Pods-Alamofire_tutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alamofire_tutorial.debug.xcconfig"; path = "Target Support Files/Pods-Alamofire_tutorial/Pods-Alamofire_tutorial.debug.xcconfig"; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				346B68A927A3DD1A00260401 /* HomeVC.swift */,
 				341FF41527AF9607001EDA67 /* PhotoCollectionVC.swift */,
 				341FF41727AF960F001EDA67 /* UserListVC.swift */,
+				34987EC027B118FF0057E9B9 /* BaseVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				341FF41827AF960F001EDA67 /* UserListVC.swift in Sources */,
 				346B68AA27A3DD1A00260401 /* HomeVC.swift in Sources */,
 				341FF41627AF9607001EDA67 /* PhotoCollectionVC.swift in Sources */,
+				34987EC127B118FF0057E9B9 /* BaseVC.swift in Sources */,
 				34F66BC427ABAF65009CDA4E /* MainContainer.swift in Sources */,
 				346B68A627A3DD1A00260401 /* AppDelegate.swift in Sources */,
 				346B68BB27A3E36100260401 /* Constrants.swift in Sources */,

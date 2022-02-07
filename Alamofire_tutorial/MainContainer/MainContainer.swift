@@ -16,6 +16,8 @@ class MainContainer: UIView {
     
     var delegate: identifierDelegate!
     
+    var keyboardDismissTabGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
+    
     var mainPhotoView: UIImageView = {
         let imgV = UIImageView()
         imgV.clipsToBounds = true
@@ -30,6 +32,7 @@ class MainContainer: UIView {
         sg.addTarget(self, action: #selector(clickedSegmentControl(_:)), for: .valueChanged)
         sg.selectedSegmentIndex = 0
         sg.tintColor = .white
+        sg.selectedSegmentTintColor = .systemPink
         return sg
     }()
     
@@ -66,6 +69,7 @@ class MainContainer: UIView {
         self.loadXib()
         self.setUpUI()
         self.setDelegate()
+        self.addGestureRecognizer(keyboardDismissTabGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -83,6 +87,7 @@ class MainContainer: UIView {
     // MARK: - set Delegate
     func setDelegate() {
         self.searchBar.delegate = self
+        self.keyboardDismissTabGesture.delegate = self
     }
     
     // MARK: - setUpUI method
@@ -136,7 +141,6 @@ class MainContainer: UIView {
         }
         
         self.searchBar.placeholder = btnTitle + " 입력"
-        self.searchBar.becomeFirstResponder() // 포커싱 설정
     }
     
     @objc func onSearchButtonClicked( _ sender: UIButton) {
@@ -183,5 +187,23 @@ extension MainContainer: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let userInputText = self.searchBar.text else { return }
          
+        if (!userInputText.isEmpty) {
+            self.pushVC()
+        }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension MainContainer: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view?.isDescendant(of: self.sgControl) == true) {
+            return false
+        } else if (touch.view?.isDescendant(of: self.searchBar) == true) {
+            return false
+        } else if (touch.view?.isDescendant(of: self.searchBtn) == true) {
+            return false
+        }
+        self.endEditing(true)
+        return true
     }
 }
