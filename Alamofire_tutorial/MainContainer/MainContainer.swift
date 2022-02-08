@@ -51,7 +51,7 @@ class MainContainer: UIView {
         btn.tintColor  = .white
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         btn.layer.cornerRadius = 10
-        btn.isHidden = true
+        //btn.isHidden = true
         return btn
     }()
     
@@ -94,7 +94,7 @@ class MainContainer: UIView {
     func setUpUI() {
         self.addSubview(self.mainPhotoView)
         self.mainPhotoView.snp.makeConstraints{ make in
-            make.top.equalTo(self.snp.top)
+            make.top.equalTo(self.snp.top).offset(270)
             make.centerX.equalTo(self.snp.centerX)
             make.width.height.equalTo(100)
         }
@@ -168,7 +168,7 @@ class MainContainer: UIView {
 extension MainContainer: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if (searchText.isEmpty) {
-            self.searchBtn.isHidden = true
+            //self.searchBtn.isHidden = true
         } else {
             self.searchBtn.isHidden = false
         }

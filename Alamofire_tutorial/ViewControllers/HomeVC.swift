@@ -30,15 +30,11 @@ class HomeVC: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         // 키보드 노티 등록 해제
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         self.mainContainerView.searchBar.resignFirstResponder() // 포커싱 해제
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.mainContainerView.searchBar.becomeFirstResponder()
     }
     
     func setUpUI() {
@@ -46,7 +42,7 @@ class HomeVC: UIViewController {
         mainContainerView.delegate = self
         self.view.addSubview(mainContainerView)
         mainContainerView.snp.makeConstraints{ make in
-            make.top.bottom.left.right.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     // MARK: - prepare methods
@@ -64,14 +60,11 @@ class HomeVC: UIViewController {
     
     // MARK: - objc methods
     @objc func keyboardWillShowHandle(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            print("keyboard.origin.y: \(keyboardSize.origin.y)")
-            print("searchBtn.frame.origin.y: \(self.mainContainerView.searchBtn.frame.origin.y)")
-            print("mainphotoView.frame.origin.y: \(self.mainContainerView.mainPhotoView.frame.origin.y)")
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if (keyboardSize.origin.y < self.mainContainerView.searchBtn.frame.origin.y) {
                 let distance = keyboardSize.origin.y - self.mainContainerView.searchBtn.frame.origin.y
                 print("distance: \(distance)")
-                self.view.frame.origin.y = distance
+                self.view.frame.origin.y = distance - self.mainContainerView.searchBtn.frame.height - 30
             }
         }
     }

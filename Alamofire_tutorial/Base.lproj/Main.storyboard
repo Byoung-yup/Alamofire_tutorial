@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--HomeVC-->
+        <!--Main-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="Alamofire_tutorial" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wZ5-Po-zlt"/>
+                    <navigationItem key="navigationItem" title="Main" id="wZ5-Po-zlt"/>
                     <connections>
                         <segue destination="DNy-t9-ZUu" kind="show" identifier="goToPhotoCollectionVC" id="7K7-F5-6KF"/>
                         <segue destination="Nj8-Zz-I06" kind="show" identifier="goToUserListVC" id="378-rt-gpj"/>
