@@ -7,6 +7,7 @@
 
 import UIKit
 import Toast_Swift
+import Alamofire
 
 protocol identifierDelegate {
     func searchButton(identifier: String)
@@ -94,7 +95,7 @@ class MainContainer: UIView {
     func setUpUI() {
         self.addSubview(self.mainPhotoView)
         self.mainPhotoView.snp.makeConstraints{ make in
-            make.top.equalTo(self.snp.top).offset(270)
+            make.top.equalTo(self.snp.top).offset(150)
             make.centerX.equalTo(self.snp.centerX)
             make.width.height.equalTo(100)
         }
@@ -144,7 +145,45 @@ class MainContainer: UIView {
     }
     
     @objc func onSearchButtonClicked( _ sender: UIButton) {
-        self.pushVC()
+        
+//        let url = API.BASIC_URL + "search/photos"
+        
+        guard let userInput = self.searchBar.text else { return }
+        
+        // 키, 벨류 형식의 딕셔너리
+//        let queryParam : [String : String] = [
+//            "query" : userInput,
+//            "client_id" : API.CLIENT_ID
+//        ]
+        
+        /*
+        AF.request(url, method: .get, parameters: queryParam, encoding: URLEncoding.default).responseJSON { data in
+            debugPrint(data)
+         */
+        
+        var urlToCall: URLRequestConvertible?
+        
+        switch sgControl.selectedSegmentIndex {
+        case 0:
+            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+        case 1:
+            urlToCall = MySearchRouter.searchUsers(term: userInput)
+        default :
+            break
+            
+        }
+        
+        if let urlConvertible = urlToCall {
+            MyAlamofireManager
+                .shared
+                .session
+                .request(urlConvertible)
+                .validate(statusCode: 200..<401)
+                .responseJSON(completionHandler: { response in
+                    debugPrint(response)
+                })
+        }
+        //self.pushVC()
     }
     
     // MARK: - fileprivate methods

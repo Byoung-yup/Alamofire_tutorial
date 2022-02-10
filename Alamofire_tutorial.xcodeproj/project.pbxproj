@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3410331F27B4EED40025FA2C /* MyAlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410331E27B4EED40025FA2C /* MyAlamofireManager.swift */; };
+		3410332127B4EF8E0025FA2C /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410332027B4EF8E0025FA2C /* BaseInterceptor.swift */; };
+		3410332327B4FA050025FA2C /* MyLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410332227B4FA050025FA2C /* MyLogger.swift */; };
+		3410332527B4FBDE0025FA2C /* MySearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410332427B4FBDE0025FA2C /* MySearchRouter.swift */; };
 		341FF41627AF9607001EDA67 /* PhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341FF41527AF9607001EDA67 /* PhotoCollectionVC.swift */; };
 		341FF41827AF960F001EDA67 /* UserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341FF41727AF960F001EDA67 /* UserListVC.swift */; };
 		346B68A627A3DD1A00260401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B68A527A3DD1A00260401 /* AppDelegate.swift */; };
@@ -23,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3410331E27B4EED40025FA2C /* MyAlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlamofireManager.swift; sourceTree = "<group>"; };
+		3410332027B4EF8E0025FA2C /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
+		3410332227B4FA050025FA2C /* MyLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLogger.swift; sourceTree = "<group>"; };
+		3410332427B4FBDE0025FA2C /* MySearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySearchRouter.swift; sourceTree = "<group>"; };
 		341FF41527AF9607001EDA67 /* PhotoCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionVC.swift; sourceTree = "<group>"; };
 		341FF41727AF960F001EDA67 /* UserListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVC.swift; sourceTree = "<group>"; };
 		346B68A227A3DD1A00260401 /* Alamofire_tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alamofire_tutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +62,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3410331D27B4EEC30025FA2C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3410331E27B4EED40025FA2C /* MyAlamofireManager.swift */,
+				3410332027B4EF8E0025FA2C /* BaseInterceptor.swift */,
+				3410332227B4FA050025FA2C /* MyLogger.swift */,
+				3410332427B4FBDE0025FA2C /* MySearchRouter.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		341FF41927AF9B51001EDA67 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +105,7 @@
 		346B68A427A3DD1A00260401 /* Alamofire_tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				3410331D27B4EEC30025FA2C /* API */,
 				346B68B927A3E34B00260401 /* Utils */,
 				341FF41927AF9B51001EDA67 /* ViewControllers */,
 				34F66BC027ABAF06009CDA4E /* MainContainer */,
@@ -253,8 +273,12 @@
 				346B68AA27A3DD1A00260401 /* HomeVC.swift in Sources */,
 				341FF41627AF9607001EDA67 /* PhotoCollectionVC.swift in Sources */,
 				34987EC127B118FF0057E9B9 /* BaseVC.swift in Sources */,
+				3410332527B4FBDE0025FA2C /* MySearchRouter.swift in Sources */,
 				34F66BC427ABAF65009CDA4E /* MainContainer.swift in Sources */,
 				346B68A627A3DD1A00260401 /* AppDelegate.swift in Sources */,
+				3410332127B4EF8E0025FA2C /* BaseInterceptor.swift in Sources */,
+				3410332327B4FA050025FA2C /* MyLogger.swift in Sources */,
+				3410331F27B4EED40025FA2C /* MyAlamofireManager.swift in Sources */,
 				346B68BB27A3E36100260401 /* Constrants.swift in Sources */,
 				346B68A827A3DD1A00260401 /* SceneDelegate.swift in Sources */,
 			);

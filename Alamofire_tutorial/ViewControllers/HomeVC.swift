@@ -10,7 +10,7 @@ import Alamofire
 import SnapKit
 import Toast_Swift
 
-class HomeVC: UIViewController {
+class HomeVC: BaseVC {
     let url = API.BASIC_URL + "search/photos"
     
     var mainContainerView: MainContainer!
