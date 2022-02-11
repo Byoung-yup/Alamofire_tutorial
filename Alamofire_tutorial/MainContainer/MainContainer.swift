@@ -161,28 +161,48 @@ class MainContainer: UIView {
             debugPrint(data)
          */
         
-        var urlToCall: URLRequestConvertible?
+        //var urlToCall: URLRequestConvertible?
         
         switch sgControl.selectedSegmentIndex {
         case 0:
-            urlToCall = MySearchRouter.searchPhotos(term: userInput)
-        case 1:
-            urlToCall = MySearchRouter.searchUsers(term: userInput)
+            //let urlToCall = MySearchRouter.searchPhotos(term: userInput)
+            
+            MyAlamofireManager
+                .shared
+                .getPhotos(searchTerm: userInput) { [weak self] result in
+                    
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let fetchedPhotos):
+                        print("HomeVC - getPhotos.success - fetchedPhotos.count: \(fetchedPhotos.count)")
+                        self.pushVC()
+                    case .failure(let error):
+                        print("HomeVC - getPhtos.failure - error: \(error.rawValue)")
+                        self.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+                }
+            }
+        //case 1:
+            //let urlToCall = MySearchRouter.searchUsers(term: userInput)
         default :
             break
             
         }
         
-        if let urlConvertible = urlToCall {
-            MyAlamofireManager
-                .shared
-                .session
-                .request(urlConvertible)
-                .validate(statusCode: 200..<401)
-                .responseJSON(completionHandler: { response in
-                    debugPrint(response)
-                })
-        }
+//        if let urlConvertible = urlToCall {
+//            MyAlamofireManager
+//                .shared
+//                .session
+//                .request(urlConvertible)
+//                .validate(statusCode: 200..<401)
+//                .responseJSON(completionHandler: { response in
+//                    debugPrint(response)
+//                })
+//        }
+        
+//        if (!userInput.isEmpty) {
+//            self.pushVC()
+//        }
         //self.pushVC()
     }
     

@@ -36,9 +36,9 @@ enum MySearchRouter: URLRequestConvertible {
     var endPoint: String {
         switch self {
         case .searchPhotos:
-            return "photos/"
+            return "photos"
         case .searchUsers:
-            return "users/"
+            return "users"
         }
     }
     
@@ -46,7 +46,7 @@ enum MySearchRouter: URLRequestConvertible {
         
         switch self {
         case let .searchPhotos(term), let .searchUsers(term):
-            return ["query" : term]
+            return ["query" : term, "client_id" : API.CLIENT_ID]
         }
             
     }

@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 final class MyAlamofireManager {
     
@@ -29,5 +30,53 @@ final class MyAlamofireManager {
         session = Session(
             interceptor: intercepters,
             eventMonitors: momitors)
+    }
+    
+    func getPhotos(searchTerm userInput: String, completion: @escaping (Result<[Photo], MyError>) -> Void) {
+        
+        print("MyAlamofireManager getPhotos() called: \(userInput)")
+        
+        self.session
+            .request(MySearchRouter.searchPhotos(term: userInput))
+            .validate(statusCode: 200..<401)
+            .responseJSON(completionHandler: { response in
+                
+                guard let responseValue = response.value else { return }
+                
+                let responseJSON = JSON(responseValue)
+                
+                let jsonArray = responseJSON["results"]
+                
+                var photos = [Photo]()
+                
+                print("jsonArray.size: \(jsonArray.count))")
+                
+                for (index, subJson): (String, JSON) in jsonArray {
+                    //print("index: \(index), subJson: \(subJson)")
+                    
+                    // 데이터 파싱
+//                    let thumbnail  = subJson["urls"]["thumb"].string ?? ""
+//                    let username   = subJson["user"]["username"].string ?? ""
+//                    let likesCount = subJson["likes"].intValue ?? 0
+//                    let createAt   = subJson["created_at"].string
+                    
+                    guard let thumbnail  = subJson["urls"]["thumb"].string,
+                          let username   = subJson["user"]["username"].string,
+                          let createAt   = subJson["created_at"].string else { return }
+                    
+                    let likesCount = subJson["likes"].intValue
+                    
+                 let photoItem = Photo(thumbnail: thumbnail, username: username, likesCount: likesCount, createAt: createAt)
+                    // 배열에 넣고
+                    photos.append(photoItem)
+                    print("photos item: \(photos)")
+                }
+                
+                if photos.count > 0 {
+                    completion(.success(photos))
+                } else {
+                    completion(.failure(.noContent))
+                }
+            })
     }
 }

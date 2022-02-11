@@ -11,4 +11,6 @@ target 'Alamofire_tutorial' do
     pod 'SnapKit', '~> 5.0.0'
 
     pod 'Toast-Swift', '~> 5.0.1'
+   
+    pod 'SwiftyJSON', '~> 4.0'
 end
